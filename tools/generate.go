@@ -255,13 +255,27 @@ func parseExamples() []*Example {
 		}
 
 		var example Example
-		if strings.HasPrefix(exampleName, "#") {
-			example = Example{Name: "<s>" + exampleName[1:] + "</s>"}
+		var exampleID string
+
+		// 检查是否存在 "->"
+		if strings.Contains(exampleName, "->") {
+			parts := strings.Split(exampleName, "->")
+			if len(parts) == 2 {
+				exampleID = parts[0]
+				exampleName = parts[1]
+			}
+		} else {
+			exampleID = exampleName
+		}
+
+
+		if strings.HasPrefix(exampleID, "#") {
+			example = Example{Name: "<s>" + exampleName + "</s>"}
 		} else {
 			example = Example{Name: exampleName}
 		}
 
-		exampleID := strings.ToLower(exampleName)
+		exampleID = strings.ToLower(exampleID)
 		exampleID = strings.Replace(exampleID, "#", "", -1)
 		exampleID = strings.Replace(exampleID, " ", "-", -1)
 		exampleID = strings.Replace(exampleID, "/", "-", -1)
