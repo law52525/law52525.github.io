@@ -2,30 +2,30 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: 常量</title>
+    <title>Go by Example: <s>常量</s></title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
       onkeydown = (e) => {
           
           if (e.key == "ArrowLeft") {
-              window.location.href = '变量';
+              window.location.href = '#变量';
           }
           
           
           if (e.key == "ArrowRight") {
-              window.location.href = 'for-循环';
+              window.location.href = '#for-循环';
           }
           
       }
   </script>
   <body>
-    <div class="example" id="常量">
-      <h2><a href="./">Go by Example</a>: 常量</h2>
+    <div class="example" id="#常量">
+      <h2><a href="./">Go by Example</a>: <s>常量</s></h2>
       
       
       <p class="next">
-        Next example: <a href="for-循环">For 循环</a>.
+        Next example: <a href="#for-循环"><s>For 循环</s></a>.
       </p>
       
 

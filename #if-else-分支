@@ -2,30 +2,30 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: 函数</title>
+    <title>Go by Example: <s>If/Else 分支</s></title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
       onkeydown = (e) => {
           
           if (e.key == "ArrowLeft") {
-              window.location.href = 'range-遍历';
+              window.location.href = '#for-循环';
           }
           
           
           if (e.key == "ArrowRight") {
-              window.location.href = '多返回值';
+              window.location.href = 'switch-分支结构';
           }
           
       }
   </script>
   <body>
-    <div class="example" id="函数">
-      <h2><a href="./">Go by Example</a>: 函数</h2>
+    <div class="example" id="#if-else-分支">
+      <h2><a href="./">Go by Example</a>: <s>If/Else 分支</s></h2>
       
       
       <p class="next">
-        Next example: <a href="多返回值">多返回值</a>.
+        Next example: <a href="switch-分支结构">Switch 分支结构</a>.
       </p>
       
 

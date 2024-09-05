@@ -2,30 +2,26 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: Range 遍历</title>
+    <title>Go by Example: <s>Hello World</s></title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
       onkeydown = (e) => {
           
-          if (e.key == "ArrowLeft") {
-              window.location.href = 'map';
-          }
-          
           
           if (e.key == "ArrowRight") {
-              window.location.href = '函数';
+              window.location.href = '#值';
           }
           
       }
   </script>
   <body>
-    <div class="example" id="range-遍历">
-      <h2><a href="./">Go by Example</a>: Range 遍历</h2>
+    <div class="example" id="#hello-world">
+      <h2><a href="./">Go by Example</a>: <s>Hello World</s></h2>
       
       
       <p class="next">
-        Next example: <a href="函数">函数</a>.
+        Next example: <a href="#值"><s>值</s></a>.
       </p>
       
 

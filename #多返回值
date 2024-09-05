@@ -2,30 +2,30 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: 指针</title>
+    <title>Go by Example: <s>多返回值</s></title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
       onkeydown = (e) => {
           
           if (e.key == "ArrowLeft") {
-              window.location.href = '递归';
+              window.location.href = '#函数';
           }
           
           
           if (e.key == "ArrowRight") {
-              window.location.href = '字符串和rune类型';
+              window.location.href = '变参函数';
           }
           
       }
   </script>
   <body>
-    <div class="example" id="指针">
-      <h2><a href="./">Go by Example</a>: 指针</h2>
+    <div class="example" id="#多返回值">
+      <h2><a href="./">Go by Example</a>: <s>多返回值</s></h2>
       
       
       <p class="next">
-        Next example: <a href="字符串和rune类型">字符串和rune类型</a>.
+        Next example: <a href="变参函数">变参函数</a>.
       </p>
       
 
