@@ -14,7 +14,7 @@
           
           
           if (e.key == "ArrowRight") {
-              window.location.href = '#递归';
+              window.location.href = '递归';
           }
           
       }
@@ -25,7 +25,7 @@
       
       
       <p class="next">
-        Next example: <a href="#递归"><s>递归</s></a>.
+        Next example: <a href="递归"><s>递归</s></a>.
       </p>
       
 

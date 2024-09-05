@@ -9,23 +9,23 @@
       onkeydown = (e) => {
           
           if (e.key == "ArrowLeft") {
-              window.location.href = '#切片';
+              window.location.href = '切片';
           }
           
           
           if (e.key == "ArrowRight") {
-              window.location.href = '#range-遍历';
+              window.location.href = 'range-遍历';
           }
           
       }
   </script>
   <body>
-    <div class="example" id="#map">
+    <div class="example" id="map">
       <h2><a href="./">Go by Example</a>: <s>Map</s></h2>
       
       
       <p class="next">
-        Next example: <a href="#range-遍历"><s>Range 遍历</s></a>.
+        Next example: <a href="range-遍历"><s>Range 遍历</s></a>.
       </p>
       
 

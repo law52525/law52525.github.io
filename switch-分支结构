@@ -9,12 +9,12 @@
       onkeydown = (e) => {
           
           if (e.key == "ArrowLeft") {
-              window.location.href = '#if-else-分支';
+              window.location.href = 'if-else-分支';
           }
           
           
           if (e.key == "ArrowRight") {
-              window.location.href = '#数组';
+              window.location.href = '数组';
           }
           
       }
@@ -25,7 +25,7 @@
       
       
       <p class="next">
-        Next example: <a href="#数组"><s>数组</s></a>.
+        Next example: <a href="数组"><s>数组</s></a>.
       </p>
       
 

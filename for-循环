@@ -2,30 +2,30 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go by Example: <s>数组</s></title>
+    <title>Go by Example: <s>For 循环</s></title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
       onkeydown = (e) => {
           
           if (e.key == "ArrowLeft") {
-              window.location.href = 'switch-分支结构';
+              window.location.href = '常量';
           }
           
           
           if (e.key == "ArrowRight") {
-              window.location.href = '#切片';
+              window.location.href = 'if-else-分支';
           }
           
       }
   </script>
   <body>
-    <div class="example" id="#数组">
-      <h2><a href="./">Go by Example</a>: <s>数组</s></h2>
+    <div class="example" id="for-循环">
+      <h2><a href="./">Go by Example</a>: <s>For 循环</s></h2>
       
       
       <p class="next">
-        Next example: <a href="#切片"><s>切片</s></a>.
+        Next example: <a href="if-else-分支"><s>If/Else 分支</s></a>.
       </p>
       
 
