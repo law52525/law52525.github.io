@@ -1,37 +1,9 @@
-## Welcome to GitHub Pages
+# Gobyexample.github.io
 
-You can use the [editor on GitHub](https://github.com/law52525/law52525.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+该仓库包含了 [Gobyexample](https://github.com/gobyexample-cn/gobyexample) 生成的静态文件，通过 Github Page 发布至互联网。
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+在线访问地址为：https://gobyexample-cn.github.io
 
-### Markdown
+该仓库仅用于发布内容，不接受 pr。
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/law52525/law52525.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+有任意问题，可以前往 [gobyexample](https://github.com/gobyexample-cn/gobyexample)，向我们提交 pr 或 issue，我们对此 `非常欢迎` 
