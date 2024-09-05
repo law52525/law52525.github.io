@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go by Example: 嵌入的指令</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'temporary-files-and-directories';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'testing-and-benchmarking';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="embed-directive">
+      <h2><a href="./">Go by Example</a>: 嵌入的指令</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p><code>//go:embed</code> 是一个 <a href="https://pkg.go.dev/cmd/compile#hdr-Compiler_Directives">编译器指令</a>，
+它允许程序在构建时将任意文件和文件夹包含在 Go 二进制文件中。在这里阅读有关嵌入指令的更多信息：<a href="https://pkg.go.dev/embed">这里</a>。</p>
+
+          </td>
+          <td class="code leading">
+            <a href="https://go.dev/play/p/cTPdpq6apGB"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>导入 <code>embed</code> 包；如果您不使用该包中的任何导出标识符，可以使用 <code>_ &quot;embed&quot;</code> 进行空白导入。</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;embed&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p><code>embed</code> 指令接受相对于包含 Go 源文件的目录的路径。
+该指令将文件的内容嵌入到紧随其后的 <code>string</code> 变量中。</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="c1">//go:embed folder/single_file.txt
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">fileString</span> <span class="kt">string</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>将文件的内容嵌入到一个 <code>[]byte</code> 中。</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="c1">//go:embed folder/single_file.txt
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">fileByte</span> <span class="p">[]</span><span class="kt">byte</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>我们还可以使用通配符嵌入多个文件甚至文件夹。
+这将使用 <a href="https://pkg.go.dev/embed#FS">embed.FS 类型</a>的变量，
+该类型实现了一个简单的虚拟文件系统。</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="c1">//go:embed folder/single_file.txt
+</span></span></span><span class="line"><span class="cl"><span class="c1">//go:embed folder/*.hash
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">folder</span> <span class="nx">embed</span><span class="p">.</span><span class="nx">FS</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>打印出 <code>single_file.txt</code> 的内容。</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nx">fileString</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">fileByte</span><span class="p">))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>从嵌入的文件夹中检索一些文件。</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">content1</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">folder</span><span class="p">.</span><span class="nf">ReadFile</span><span class="p">(</span><span class="s">&#34;folder/file1.hash&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">content1</span><span class="p">))</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">content2</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">folder</span><span class="p">.</span><span class="nf">ReadFile</span><span class="p">(</span><span class="s">&#34;folder/file2.hash&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">content2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>使用这些命令来运行示例。</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="go">#（注意：由于 Go Playground 的限制，这个示例只能在您的本地机器上运行。）
+</span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="gp">$</span> mkdir -p folder
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> echo &#34;hello go&#34; &gt; folder/single_file.txt
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> echo &#34;123&#34; &gt; folder/file1.hash
+</span></span><span class="line"><span class="cl"><span class="gp">$</span> echo &#34;456&#34; &gt; folder/file2.hash</span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="gp">$</span> go run embed-directive.go
+</span></span><span class="line"><span class="cl"><span class="go">hello go
+</span></span></span><span class="line"><span class="cl"><span class="go">hello go
+</span></span></span><span class="line"><span class="cl"><span class="go">123
+</span></span></span><span class="line"><span class="cl"><span class="go">456</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Next example: <a href="testing-and-benchmarking">单元测试和基准测试</a>.
+      </p>
+      
+
+    <p class="footer">
+      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"embed\"\u000A)\u000A');codeLines.push('//go:embed folder/single_file.txt\u000Avar fileString string\u000A');codeLines.push('//go:embed folder/single_file.txt\u000Avar fileByte []byte\u000A');codeLines.push('//go:embed folder/single_file.txt\u000A//go:embed folder/*.hash\u000Avar folder embed.FS\u000A');codeLines.push('func main() {\u000A');codeLines.push('    print(fileString)\u000A    print(string(fileByte))\u000A');codeLines.push('    content1, _ :\u003D folder.ReadFile(\"folder/file1.hash\")\u000A    print(string(content1))\u000A');codeLines.push('    content2, _ :\u003D folder.ReadFile(\"folder/file2.hash\")\u000A    print(string(content2))\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>

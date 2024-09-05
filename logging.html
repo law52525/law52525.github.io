@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go by Example: 日志</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'environment-variables';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'http-clients';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="logging">
+      <h2><a href="./">Go by Example</a>: 日志</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Go标准库提供了直观的工具用于从Go程序输出日志
+使用 <a href="https://pkg.go.dev/log">log</a> 包进行自由格式输出
+使用 <a href="https://pkg.go.dev/log/slog">log/slog</a> 包进行结构化输出。</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a href="https://go.dev/play/p/3ZqqLCqYmqd"><img title="Run code" src="play.png" class="run" /></a><img title="Copy code" src="clipboard.png" class="copy" />
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;bytes&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;os&#34;</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="s">&#34;log/slog&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>只需调用 <code>log</code> 包中的 <code>Println</code> 等函数即可使用 <em>标准</em> logger。
+它已经预先配置为将日志输出到 <code>os.Stderr</code>。
+像 <code>Fatal*</code> 或 <code>Panic*</code> 这样的附加方法将在记录日志后退出程序。</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;standard logger&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>日志记录器可以使用 <em>flags</em> 进行配置，以设置它们的输出格式。
+默认情况下，标准记录器已设置了 <code>log.Ldate</code> 和 <code>log.Ltime</code> 标志，
+并将它们收集在 <code>log.LstdFlags</code> 中。
+我们可以更改其标志以发出微秒精度的时间，例如：</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">SetFlags</span><span class="p">(</span><span class="nx">log</span><span class="p">.</span><span class="nx">LstdFlags</span> <span class="p">|</span> <span class="nx">log</span><span class="p">.</span><span class="nx">Lmicroseconds</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;with micro&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>它还支持发出调用 log` 函数的文件名和行号。</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">SetFlags</span><span class="p">(</span><span class="nx">log</span><span class="p">.</span><span class="nx">LstdFlags</span> <span class="p">|</span> <span class="nx">log</span><span class="p">.</span><span class="nx">Lshortfile</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;with file/line&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>可能会有用创建一个自定义记录器并在各处传递它。
+创建新记录器时，我们可以设置一个 <em>前缀</em> 来区分其输出和其他日志记录器。</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">mylog</span> <span class="o">:=</span> <span class="nx">log</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">,</span> <span class="s">&#34;my:&#34;</span><span class="p">,</span> <span class="nx">log</span><span class="p">.</span><span class="nx">LstdFlags</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mylog</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;from mylog&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>我们可以使用 <code>SetPrefix</code> 方法在现有的记录器（包括标准记录器）上设置前缀。</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">mylog</span><span class="p">.</span><span class="nf">SetPrefix</span><span class="p">(</span><span class="s">&#34;ohmy:&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mylog</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;from mylog&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>日志记录器可以具有自定义的输出目标；任何 <code>io.Writer</code> 都可以使用。</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">buf</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">Buffer</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">buflog</span> <span class="o">:=</span> <span class="nx">log</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">buf</span><span class="p">,</span> <span class="s">&#34;buf:&#34;</span><span class="p">,</span> <span class="nx">log</span><span class="p">.</span><span class="nx">LstdFlags</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>这个调用将日志输出写入到 <code>buf</code> 中.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">buflog</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>这将实际上显示在标准输出上。</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;from buflog:&#34;</span><span class="p">,</span> <span class="nx">buf</span><span class="p">.</span><span class="nf">String</span><span class="p">())</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>`slog 包提供了 <em>结构化</em> 的日志输出。例如，以 JSON 格式记录日志非常直接。</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">jsonHandler</span> <span class="o">:=</span> <span class="nx">slog</span><span class="p">.</span><span class="nf">NewJSONHandler</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">myslog</span> <span class="o">:=</span> <span class="nx">slog</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="nx">jsonHandler</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">myslog</span><span class="p">.</span><span class="nf">Info</span><span class="p">(</span><span class="s">&#34;hi there&#34;</span><span class="p">)</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>除了 <code>msg</code> 之外，<code>slog</code> 输出还可以包含任意数量的键值对。</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl">    <span class="nx">myslog</span><span class="p">.</span><span class="nf">Info</span><span class="p">(</span><span class="s">&#34;hello again&#34;</span><span class="p">,</span> <span class="s">&#34;key&#34;</span><span class="p">,</span> <span class="s">&#34;val&#34;</span><span class="p">,</span> <span class="s">&#34;age&#34;</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>示例输出；
+发出的日期和时间将取决于示例运行的时间。</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="gp">$</span> go run logging.go
+</span></span><span class="line"><span class="cl"><span class="go">2023/08/22 10:45:16 standard logger
+</span></span></span><span class="line"><span class="cl"><span class="go">2023/08/22 10:45:16.904141 with micro
+</span></span></span><span class="line"><span class="cl"><span class="go">2023/08/22 10:45:16 logging.go:40: with file/line
+</span></span></span><span class="line"><span class="cl"><span class="go">my:2023/08/22 10:45:16 from mylog
+</span></span></span><span class="line"><span class="cl"><span class="go">ohmy:2023/08/22 10:45:16 from mylog
+</span></span></span><span class="line"><span class="cl"><span class="go">from buflog:buf:2023/08/22 10:45:16 hello</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>这些被换行以便在网站上更清晰地呈现；
+实际上它们是在单行上发出的。</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><code><span class="line"><span class="cl"><span class="go">{&#34;time&#34;:&#34;2023-08-22T10:45:16.904166391-07:00&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="go"> &#34;level&#34;:&#34;INFO&#34;,&#34;msg&#34;:&#34;hi there&#34;}
+</span></span></span><span class="line"><span class="cl"><span class="go">{&#34;time&#34;:&#34;2023-08-22T10:45:16.904178985-07:00&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="go">    &#34;level&#34;:&#34;INFO&#34;,&#34;msg&#34;:&#34;hello again&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="go">    &#34;key&#34;:&#34;val&#34;,&#34;age&#34;:25}</span></span></span></code></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Next example: <a href="http-clients">HTTP 客户端</a>.
+      </p>
+      
+
+    <p class="footer">
+      by <a href="https://markmcgranaghan.com">Mark McGranaghan</a> and <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/mmcgrana/gobyexample">source</a> | <a href="https://github.com/mmcgrana/gobyexample#license">license</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"bytes\"\u000A    \"fmt\"\u000A    \"log\"\u000A    \"os\"\u000A');codeLines.push('    \"log/slog\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    log.Println(\"standard logger\")\u000A');codeLines.push('    log.SetFlags(log.LstdFlags | log.Lmicroseconds)\u000A    log.Println(\"with micro\")\u000A');codeLines.push('    log.SetFlags(log.LstdFlags | log.Lshortfile)\u000A    log.Println(\"with file/line\")\u000A');codeLines.push('    mylog :\u003D log.New(os.Stdout, \"my:\", log.LstdFlags)\u000A    mylog.Println(\"from mylog\")\u000A');codeLines.push('    mylog.SetPrefix(\"ohmy:\")\u000A    mylog.Println(\"from mylog\")\u000A');codeLines.push('    var buf bytes.Buffer\u000A    buflog :\u003D log.New(\u0026buf, \"buf:\", log.LstdFlags)\u000A');codeLines.push('    buflog.Println(\"hello\")\u000A');codeLines.push('    fmt.Print(\"from buflog:\", buf.String())\u000A');codeLines.push('    jsonHandler :\u003D slog.NewJSONHandler(os.Stderr, nil)\u000A    myslog :\u003D slog.New(jsonHandler)\u000A    myslog.Info(\"hi there\")\u000A');codeLines.push('    myslog.Info(\"hello again\", \"key\", \"val\", \"age\", 25)\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>
