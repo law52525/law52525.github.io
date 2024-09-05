@@ -268,9 +268,8 @@ func parseExamples() []*Example {
 			exampleID = exampleName
 		}
 
-
 		if strings.HasPrefix(exampleID, "#") {
-			example = Example{Name: "<s>" + exampleName + "</s>"}
+			example = Example{Name: "<s>" + strings.Replace(exampleName, "#", "", -1) + "</s>"}
 		} else {
 			example = Example{Name: exampleName}
 		}
