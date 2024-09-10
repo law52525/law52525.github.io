@@ -269,9 +269,9 @@ func parseExamples() []*Example {
 		}
 
 		if strings.HasPrefix(exampleID, "#") {
-			example = Example{Name: "<s>" + strings.Replace(exampleName, "#", "", -1) + "</s>"}
+			example = Example{Name: "<s>" + fmt.Sprintf("%d", i+1) + "." + strings.Replace(exampleName, "#", "", -1) + "</s>"}
 		} else {
-			example = Example{Name: exampleName}
+			example = Example{Name: fmt.Sprintf("%d", i+1) + "." + exampleName}
 		}
 
 		exampleID = strings.ToLower(exampleID)
