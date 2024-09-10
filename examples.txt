@@ -23,17 +23,17 @@
 #Generics->泛型
 #Errors->错误处理
 #Goroutines->协程
-Channels->通道
-Channel Buffering->通道缓冲
-Channel Synchronization->通道同步
-Channel Directions->通道方向
-Select->通道选择器
-Timeouts->超时处理
-Non-Blocking Channel Operations->非阻塞通道操作
-Closing Channels->通道的关闭
-Range over Channels->通道遍历
-Timers->Timer
-Tickers->Ticker
+#Channels->通道
+#Channel Buffering->通道缓冲
+#Channel Synchronization->通道同步
+#Channel Directions->通道方向
+#Select->通道选择器
+#Timeouts->超时处理
+#Non-Blocking Channel Operations->非阻塞通道操作
+#Closing Channels->通道的关闭
+#Range over Channels->通道遍历
+#Timers->Timer
+#Tickers->Ticker
 Worker Pools->工作池
 WaitGroups->WaitGroup
 Rate Limiting->速率限制
