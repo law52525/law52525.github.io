@@ -41,12 +41,12 @@
 #Mutexes->互斥锁
 Stateful Goroutines->状态协程
 #Sorting->排序
-Sorting by Functions->使用函数自定义排序
-Panic
-Defer
-Recover
-String Functions->字符串函数
-String Formatting->字符串格式化
+#Sorting by Functions->使用函数自定义排序
+#Panic
+#Defer
+#Recover
+#String Functions->字符串函数
+#String Formatting->字符串格式化
 Text Templates->文本模板
 Regular Expressions->正则表达式
 JSON
